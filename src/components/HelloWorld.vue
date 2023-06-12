@@ -1,5 +1,6 @@
 <template>
   <div class="hello">
+    <TestComp></TestComp>
     <h1>{{ msg }}</h1>
     <p>
       For a guide and recipes on how to configure / customize this project,<br>
@@ -36,8 +37,11 @@
 
 <script lang="ts">
 import { Options, Vue } from 'vue-class-component';
+import Test from "@/components/Test.vue";
+import TestComp from "@/components/Test.vue";
 
 @Options({
+  components: {TestComp, Test},
   props: {
     msg: String
   }
