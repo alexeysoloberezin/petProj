@@ -1,0 +1,43 @@
+/* Устранение желтого фона при автозаполнении в различных браузерах */
+
+/* Chrome, Safari, Edge */
+input:-webkit-autofill,
+textarea:-webkit-autofill,
+select:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0px 1000px rgb(91, 91, 91) inset !important;
+  -webkit-text-fill-color: inherit !important;
+}
+
+/* Firefox */
+input:-moz-autofill,
+textarea:-moz-autofill,
+select:-moz-autofill {
+  background-color: transparent !important;
+  background-image: none !important;
+  color: inherit !important;
+}
+
+/* Edge Legacy */
+input:-ms-input-placeholder {
+  background-color: transparent !important;
+}
+
+/* Firefox (новые версии) */
+input:-moz-placeholder,
+textarea:-moz-placeholder {
+  background-color: transparent !important;
+}
+
+/* Internet Explorer 10-11 */
+input:-ms-input-placeholder {
+  background-color: transparent !important;
+}
+
+/* Установка общих стилей для полей ввода */
+input,
+textarea,
+select {
+  background-color: white;
+  border: 1px solid #ccc;
+  box-shadow: none;
+}

@@ -6,11 +6,22 @@
     </a-layout-content>
   </a-layout>
 </template>
-<script>
+<script >
 import SidebarBlock from "@/components/SidebarBlock";
+import {useLoginStore} from "@/store/login";
 
 export default {
-  components: {SidebarBlock}
+  components: {SidebarBlock},
+  setup(){
+    const loginStore = useLoginStore()
+
+    const loginStart = async () => {
+      await loginStore.fetchCurrentUser()
+      await loginStore.watchStatusUser()
+    }
+
+    loginStart()
+  }
 }
 </script>
 <style lang="scss">

@@ -6,8 +6,6 @@ import Antd from 'ant-design-vue';
 
 import './assets/styles/styles.scss';
 
-
-
 createApp(App)
     .use(Antd)
     .use(router)

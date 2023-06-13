@@ -1,25 +1,43 @@
 <template>
   <a-layout-sider :theme="theme" :collapsed-width="collapsedWidth" :trigger="null">
-    <h1>{{ currentUser }}</h1>
-    <div class="sidebar-ava">
+    <div v-if="currentUser" class="sidebar-ava">
       <a-avatar
           shape="circle"
           size="large"
           :style="{ backgroundColor: '#f56a00', verticalAlign: 'middle' }"
       >
-        L
+        <span v-if="currentUser && currentUser.name">{{ currentUser.name[0] }}</span>
+        <span v-else-if="currentUser && currentUser.email">{{ currentUser.email[0] }}</span>
       </a-avatar>
-      {{ currentUser }}
+
       <a-button
           size="small"
           :style="{ marginLeft: '16px', verticalAlign: 'middle' }"
-          @click=""
+          @click="handleLogout"
       >
         Logout
       </a-button>
     </div>
+    <div v-else class="sidebar-ava">
+      <a-avatar
+          shape="circle"
+          size="large"
+          :style="{ backgroundColor: 'rgb(82,81,79)', verticalAlign: 'middle' }"
+      ></a-avatar>
+
+      <router-link to="/login">
+        <a-button
+            size="small"
+            :style="{ marginLeft: '16px', verticalAlign: 'middle' }"
+        >
+          Login
+        </a-button>
+      </router-link>
+    </div>
+
+
     <a-menu :default-selected-keys="[currentRoute.path]" :mode="menuMode">
-      <a-menu-item v-for="route in routes" :key="route.path" >
+      <a-menu-item v-for="route in routes" :key="route.path">
         <router-link :to="route.path">
           <span>{{ route.name }}</span>
         </router-link>
@@ -30,13 +48,10 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, computed } from 'vue';
-import { useRoute, useRouter } from 'vue-router';
-import { Layout, Menu } from 'ant-design-vue';
-import { RouteRecordRaw } from 'vue-router';
+import {defineComponent, computed} from 'vue';
+import {useRoute, useRouter} from 'vue-router';
+import {Layout, Menu} from 'ant-design-vue';
 import {useLoginStore} from "@/store/login";
-import { User } from "@/store/login";
-
 
 export default defineComponent({
   name: 'SidebarBlock',
@@ -58,15 +73,20 @@ export default defineComponent({
     ]
     const route = useRoute();
     const loginStore = useLoginStore()
-    const currentUser: User | null = loginStore.getUser
+    const currentUser = computed(() => loginStore.getUser)
 
     const currentRoute = computed(() => route);
     const theme = 'dark';
     const collapsedWidth = 80; // Ширина боковой панели в свернутом состоянии
     const menuMode = 'vertical';
 
+    const handleLogout = async (): Promise<void> => {
+      await loginStore.logout()
+    }
+
     return {
       currentUser,
+      handleLogout,
       routes,
       currentRoute,
       theme,
@@ -80,12 +100,14 @@ export default defineComponent({
 <style scoped lang="scss">
 .sidebar {
   height: 100%;
-  &-ava{
+
+  &-ava {
     width: 100%;
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 10px 15px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
   }
 }
 

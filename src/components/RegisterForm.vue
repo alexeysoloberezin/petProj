@@ -13,6 +13,7 @@
       </a-form-item>
       <a-form-item >
         <a-button  type="primary" html-type="submit">Register</a-button>
+        <router-link style="margin-left: 10px" to="/login">Go to login</router-link>
       </a-form-item>
     </a-form>
   </div>
