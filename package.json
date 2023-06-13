@@ -10,10 +10,12 @@
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
+    "ant-design-vue": "^4.0.0-rc.5",
+    "firebase": "^9.22.2",
     "pinia": "^2.0.0-rc.10",
     "vue": "^3.2.13",
     "vue-class-component": "^8.0.0-0",
-    "vue-router": "^4.0.3",
+    "vue-router": "^4.0.3"
   },
   "devDependencies": {
     "@types/jest": "^27.0.1",
