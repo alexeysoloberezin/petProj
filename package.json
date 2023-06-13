@@ -12,12 +12,14 @@
   "dependencies": {
     "ant-design-vue": "^4.0.0-rc.5",
     "firebase": "^9.22.2",
+    "firebaseui": "^6.0.2",
     "pinia": "^2.0.0-rc.10",
     "vue": "^3.2.13",
     "vue-class-component": "^8.0.0-0",
     "vue-router": "^4.0.3"
   },
   "devDependencies": {
+    "@types/firebase": "^3.2.1",
     "@types/jest": "^27.0.1",
     "@typescript-eslint/eslint-plugin": "^5.4.0",
     "@typescript-eslint/parser": "^5.4.0",
