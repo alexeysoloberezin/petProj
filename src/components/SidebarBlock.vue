@@ -1,14 +1,16 @@
 <template>
   <a-layout-sider :theme="theme" :collapsed-width="collapsedWidth" :trigger="null">
     <div v-if="currentUser" class="sidebar-ava">
-      <a-avatar
-          shape="circle"
-          size="large"
-          :style="{ backgroundColor: '#f56a00', verticalAlign: 'middle' }"
-      >
-        <span v-if="currentUser && currentUser.name">{{ currentUser.name[0] }}</span>
-        <span v-else-if="currentUser && currentUser.email">{{ currentUser.email[0] }}</span>
-      </a-avatar>
+      <router-link to="/profile">
+        <a-avatar
+            shape="circle"
+            size="large"
+            :style="{ backgroundColor: '#f56a00', verticalAlign: 'middle' }"
+        >
+          <span v-if="currentUser && currentUser.name">{{ currentUser.name[0] }}</span>
+          <span v-else-if="currentUser && currentUser.email">{{ currentUser.email[0] }}</span>
+        </a-avatar>
+      </router-link>
 
       <a-button
           size="small"
@@ -69,6 +71,14 @@ export default defineComponent({
       {
         path: '/About',
         name: 'About'
+      },
+      {
+        path: '/RestApiExamples',
+        name: 'Rest api examples'
+      },
+      {
+        path: '/Constructor',
+        name: 'Constructor'
       },
     ]
     const route = useRoute();

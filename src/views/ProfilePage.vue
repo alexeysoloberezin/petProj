@@ -1,10 +1,15 @@
 <template>
-  <div>ProfilePage</div>
+  <div>
+    <ProfileForm></ProfileForm>
+  </div>
 </template>
 
 <script>
+import ProfileForm from "@/components/ProfileForm";
+
 export default {
-  name: "ProfilePage"
+  name: "ProfilePage",
+  components: {ProfileForm}
 }
 </script>
 

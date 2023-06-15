@@ -14,14 +14,21 @@ export interface User {
 export const useLoginStore = defineStore({
     id: 'login',
     state: () => ({
-        user: null as User | null
+        user: null as User | null,
+        loading: false as boolean
     }),
     getters: {
+        getLoading(): boolean {
+          return this.loading
+        },
         getUser(): User | null {
             return this.user;
         },
     },
     actions: {
+        setLoading(loading: boolean): void {
+          this.loading = loading
+        },
         setUser(user: User): void {
             this.user = user;
         },
@@ -43,6 +50,7 @@ export const useLoginStore = defineStore({
             } catch (error: any) {
                 message.error(error.message);
             }
+            this.loading = false
         },
         async register(email: string, password: string): Promise<void> {
             try {
@@ -52,6 +60,7 @@ export const useLoginStore = defineStore({
             } catch (error: any ) {
                 message.error(error.message);
             }
+            this.loading = false
         },
         async fetchCurrentUser(): Promise<void> {
             const savedUser = localStorage.getItem('currentUser');
@@ -70,7 +79,6 @@ export const useLoginStore = defineStore({
             }
         },
         async logout(): Promise<void>{
-            console.log(123)
             try{
                 await auth.signOut();
                 this.user = null

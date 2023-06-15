@@ -1,7 +1,10 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router'
 import HomeView from '../views/HomePage.vue'
 import LoginView from '../views/LoginPage.vue'
-import RegisterForm from "@/components/RegisterForm.vue";
+import RegisterPage from "@/views/RegisterPage.vue";
+import ProfilePage from "@/views/ProfilePage.vue";
+import RestApiPage from "@/views/RestApiPage.vue";
+import ConstructorPage from "@/views/ConstructorPage.vue";
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -17,7 +20,22 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: '/register',
     name: 'Register',
-    component: RegisterForm
+    component: RegisterPage
+  },
+  {
+    path: '/profile',
+    name: 'Profile',
+    component: ProfilePage
+  },
+  {
+    path: '/RestApiExamples',
+    name: 'RestApiExamples',
+    component: RestApiPage
+  },
+  {
+    path: '/Constructor',
+    name: 'Constructor',
+    component: ConstructorPage
   },
   {
     path: '/about',
